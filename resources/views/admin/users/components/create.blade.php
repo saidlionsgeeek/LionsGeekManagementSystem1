@@ -56,7 +56,7 @@
 
                         <div>
                             <label for="checklist[]">Gestionnaire des studios</label>
-                            <input type="checkbox" id="checklist[]" name="checklist[]" value="" checked />
+                            <input type="checkbox" id="checklist[]" name="checklist[]" value="Gestionnaire des studios" checked />
                         </div>
 
                         <div>

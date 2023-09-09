@@ -36,7 +36,7 @@ class UserController extends Controller
         if (!$exist) { 
             if ($request->type == "interne") {
                 $password = Str::random(12);
-                User::create([
+                $user = User::create([
                     "name" => $request->name,
                     "lastname" => $request->lastname,
                     "cin" => $request->cin,
@@ -45,7 +45,26 @@ class UserController extends Controller
                     "type" => $request->type,
                     "email" => $request->email,
                     "password" => $password
-                ])->assignRole('interne');
+                ]);
+                $user->assignRole('interne');
+                $selectedCheckboxes = $request->input('checklist');
+                if ($selectedCheckboxes =! null) {
+
+                $selectedCheckboxes = $request->input('checklist');
+                    foreach($selectedCheckboxes as $selectedCheckboxe){
+                        if ($selectedCheckboxe == "Gestionnaire des classes" ) {
+                            if (!$user->hasRole('Gestionnaire des classes')) {
+                                $user->assignRole('Gestionnaire des classes');
+                            }
+                        }elseif ($selectedCheckboxe == "Gestionnaire des studios") {
+                            if (!$user->hasRole('Gestionnaire des studios')) {
+                                $user->assignRole('Gestionnaire des studios');
+                            }
+                        }
+                    }
+                }
+
+
                 $mailData = [
                     "email" => "tu es été ajouté par lionesGeek avec rôle interne",
                     "password" => $password
@@ -54,7 +73,7 @@ class UserController extends Controller
             } else if ($request->type == "externe") {
 
                 $password = Str::random(12);
-                User::create([
+                $user= User::create([
                     "name" => $request->name,
                     "lastname" => $request->lastname,
                     "cin" => $request->cin,
@@ -63,7 +82,24 @@ class UserController extends Controller
                     "type" => $request->type,
                     "email" => $request->email,
                     "password" => $password
-                ])->assignRole('externe');
+                ]);
+                $user->assignRole('externe');
+                $selectedCheckboxes = $request->input('checklist');
+                if ($selectedCheckboxes =! null) {
+
+                $selectedCheckboxes = $request->input('checklist');
+                    foreach($selectedCheckboxes as $selectedCheckboxe){
+                        if ($selectedCheckboxe == "Gestionnaire des classes" ) {
+                            if (!$user->hasRole('Gestionnaire des classes')) {
+                                $user->assignRole('Gestionnaire des classes');
+                            }
+                        }elseif ($selectedCheckboxe == "Gestionnaire des studios") {
+                            if (!$user->hasRole('Gestionnaire des studios')) {
+                                $user->assignRole('Gestionnaire des studios');
+                            }
+                        }
+                    }
+                }
 
                 $mailData = [
                     "email" => "tu es été ajouté par lionesGeek avec rôle externe",
@@ -73,13 +109,7 @@ class UserController extends Controller
             }
         }
 
-        // $selectedCheckboxes = $request->input('checklist');
-
-        // foreach($selectedCheckboxes as $selectedCheckboxe){
-        //     if ($selectedCheckboxe == "") {
-        //         $user
-        //     }
-        // }
+        
 
         return redirect()->back();
     }
