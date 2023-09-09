@@ -15,6 +15,12 @@
                     <x-nav-link class='text-decoration-none' :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link class="text-decoration-none" :href="route('classes.calendar', 1)" :active="request()->routeIs('classes.calendar')">
+                        {{ __('Classes') }}
+                    </x-nav-link>
+                    <x-nav-link class="text-decoration-none" :href="route('studios.calendar', 1)" :active="request()->routeIs('studios.calendar')">
+                        {{ __('Studios') }}
+                    </x-nav-link>
                     @role("admin")
                         {{-- <x-nav-link class='text-decoration-none' :href="route('admin.roles.index')" >
                             {{ __('roles') }}
@@ -23,15 +29,14 @@
                             {{ __('permissions') }}
                         </x-nav-link> --}}
                         <x-nav-link class='text-decoration-none' :href="route('admin.users.index')" :active="request()->routeIs('admin.users.index')" >
-                            {{ __('users') }}
+                            {{ __('Users') }}
                         </x-nav-link>
                         <x-nav-link class='text-decoration-none' :href="route('admin.classe.index')" :active="request()->routeIs('admin.classe.index')">
-                            {{ __('classes') }}
+                            {{ __('Modifier les Classes') }}
                         </x-nav-link>
                         <x-nav-link class='text-decoration-none' :href="route('admin.studio.index')" :active="request()->routeIs('admin.studio.index')">
-                            {{ __('studios') }}
+                            {{ __('Modifier les Studios') }}
                         </x-nav-link>
-                    
                         @endrole
                 </div>
                 <div class='d-flex align-items-center'>
