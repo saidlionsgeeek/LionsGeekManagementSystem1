@@ -10,6 +10,7 @@ class Equipement extends Model
     use HasFactory;
     protected $fillable = [
         "name",
+        "ref",
         "state",
         "stock",
         "img_url",

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\ClasseController;
 use App\Http\Controllers\admin\ClassImageController;
+use App\Http\Controllers\admin\EquipmentController;
 use App\Http\Controllers\admin\IndexController;
 use App\Http\Controllers\admin\PermissionController;
 use App\Http\Controllers\admin\RoleController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\reservation\ReservationClasseController;
 use App\Http\Controllers\reservation\ReservationStudioController;
+use App\Models\Equipement;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,14 +58,18 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     // classe imgs
     Route::post("/classe/images/store/{classe}", [ClassImageController::class, "store"])->name("classe.images.store");
     Route::delete("/classe/images/destroy/{classeImg}", [ClassImageController::class, "destroy"])->name("classe.image.destroy");
-    // Studios routes
+    // studios routes
     Route::get("/studio", [StudioController::class, "index"])->name("studio.index");
     Route::post("/studio/store", [StudioController::class, "store"])->name("studio.store");
     Route::delete("/studio/destroy/{studio}", [StudioController::class, "destroy"])->name("studio.destroy");
     Route::put("/studio/update/{studio}", [StudioController::class, "update"])->name("studio.update");
-    // classe imgs
+    // studio imgs
     Route::post("/studio/images/store/{studio}", [StudioImageController::class, "store"])->name("studio.images.store");
     Route::delete("/studio/images/destroy/{studioImg}", [StudioImageController::class, "destroy"])->name("studio.image.destroy");
+    // equipment routes
+    Route::get("/equipments", [EquipmentController::class, "index"])->name("equipment.index");
+    Route::post("/equipment/store", [EquipmentController::class, "store"])->name("equipment.store");
+    Route::delete("/equipment/destroy/{equipment}", [EquipmentController::class, "destroy"])->name("equipment.destroy");
 });
 
 // !!!

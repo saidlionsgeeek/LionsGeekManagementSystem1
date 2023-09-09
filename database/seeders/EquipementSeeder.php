@@ -20,7 +20,7 @@ class EquipementSeeder extends Seeder
                 "name"=>"Boitier – 1 Caméra Panasonic Lumix DC-GH5 Mirrorless Micro Four Thirds . ",
                 "state"=>true,
                 "stock"=>2,
-                'img_url' => "Equipement1.jpg", // Exemple : générer une URL d'image de chat de 640x480 pixels
+                'img_url' => "Equipment1.jpg", // Exemple : générer une URL d'image de chat de 640x480 pixels
                 "ref"=> "DC-GH5KBODY",
             ],
 

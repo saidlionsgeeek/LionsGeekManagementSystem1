@@ -20,7 +20,7 @@
                     <div class="carousel-inner">
                         @foreach ($classe->classimgs as $key => $classimg)
                             <div class="carousel-item @if ($key === 0) active @endif">
-                                <img height="200" width="400" src="{{ asset('storage/Imgs/classeImgs/' . $classimg->img_url) }}"
+                                <img height="200" width="400" src="{{ asset('storage/imgs/classeImgs/' . $classimg->img_url) }}"
                                     class="d-block w-100" alt="">
                                 <div class="carousel-caption d-none d-md-block">
                                     <form action={{ route('admin.classe.image.destroy', $classimg->id) }} method="POST">
