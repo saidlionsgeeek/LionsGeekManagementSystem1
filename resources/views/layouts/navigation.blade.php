@@ -44,7 +44,7 @@
                 </div>
                 <div class='d-flex align-items-center'>
                     
-                    <h5 class="ml-12"> you log in as {{Auth()->user()->roles[0]->name}}</h5>
+                    {{-- <h5 class="ml-12"> you log in as {{Auth()->user()->roles[0]->name}}</h5> --}}
                     
                 </div>
             </div>

@@ -76,7 +76,10 @@
         </div>
         <h1 class="text-center text-5xl pt-8">{{ $studio->name }}</h1>
         <div class="flex justify-center">
+            @role(['admin', 'Gestionnaire des studios'])
             @include('studios.components.create')
+            @endrole
+            
         </div>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

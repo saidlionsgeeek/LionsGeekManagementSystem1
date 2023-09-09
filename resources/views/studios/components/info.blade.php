@@ -12,6 +12,10 @@
                 <div class="p-6 text-gray-900">
                     {{ $reservation_studio->name }} 
 
+                    @if ($reservation_studio->user_id == auth()->user()->id)
+                        hello
+                    @endif
+
                     {{-- <form action={{ route('reservation.delete', [$reservation->studio->id, $reservation->id]) }} method="POST">
                         @csrf
                         @method('DELETE')
