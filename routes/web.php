@@ -69,6 +69,7 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     // equipment routes
     Route::get("/equipments", [EquipmentController::class, "index"])->name("equipment.index");
     Route::post("/equipment/store", [EquipmentController::class, "store"])->name("equipment.store");
+    Route::put("/equipment/state/{equipment}", [EquipmentController::class, "state"])->name("equipment.state");
     Route::delete("/equipment/destroy/{equipment}", [EquipmentController::class, "destroy"])->name("equipment.destroy");
 });
 

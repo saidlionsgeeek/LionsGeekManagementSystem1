@@ -57,7 +57,15 @@ class EquipmentController extends Controller
         }
 
         $equipment->delete();
-        
+
         return redirect()->back();
+    }
+
+    public function state(Equipement $equipment) {
+        $equipment->update([
+            'state' => !$equipment->state,
+        ]);
+
+        return back();
     }
 }

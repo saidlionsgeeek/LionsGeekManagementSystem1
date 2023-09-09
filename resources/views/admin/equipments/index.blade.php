@@ -8,7 +8,7 @@
                 <th scope="col">Ref</th>
                 <th scope="col">Stock</th>
                 <th scope="col">State</th>
-                <th scope="col">Voir plus</th>
+                <th scope="col">Picture</th>
                 <th scope="col">Supprimez un equipment</th>
             </tr>
         </thead>
@@ -19,7 +19,13 @@
                     <td>{{ $equipment->name }}</td>
                     <td>{{ $equipment->ref }}</td>
                     <td>{{ $equipment->stock }}</td>
-                    <td>{{ $equipment->state ? 'Working' : 'Defective' }}</td>
+                    <td>
+                        <form action={{ route('admin.equipment.state', $equipment->id) }} method="POST">
+                            @csrf
+                            @method('PUT')
+                            <button type="submit" class="link text-{{ $equipment->state ? 'success' : 'danger' }}">{{ $equipment->state ? 'Working' : 'Defective' }}</button>
+                        </form>
+                    </td>
                     <td>
                         @include("admin.equipments.components.show_img") 
                     </td>
