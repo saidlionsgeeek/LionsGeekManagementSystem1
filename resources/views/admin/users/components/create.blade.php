@@ -51,10 +51,24 @@
                             <option value="externe">externe</option>
                         </select>
                     </div>
+                    <fieldset>
+                        <legend>Choisi les roles :</legend>
+
+                        <div>
+                            <label for="checklist[]">Gestionnaire des studios</label>
+                            <input type="checkbox" id="checklist[]" name="checklist[]" value="" checked />
+                        </div>
+
+                        <div>
+                            <label for="checklist[]">Gestionnaire des classes</label>
+                            <input type="checkbox" id="checklist[]" name="checklist[]" value="Gestionnaire des classes" />
+                        </div>
+                    </fieldset>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button  type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
+
                 </form>
             </div>
 

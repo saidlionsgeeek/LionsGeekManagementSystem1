@@ -13,14 +13,14 @@ class RolesAssigneMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $mailData;
+    public $mailData1;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($mailData)
+    public function __construct($mailData1)
     {
-        $this->mailData = $mailData;
+        $this->mailData1 = $mailData1;
     }
 
     /**
