@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             ClasseSeeder::class,
             StudioSeeder::class,
+            EquipementSeeder::class,
         ]);
     }
 
