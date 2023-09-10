@@ -16,26 +16,26 @@ class StudioSeeder extends Seeder
         Studio::insert(
             [
                 [
-                    "name"=>"Studio_1",
+                    "name"=>"Studio 1",
                     "description"=>"20m * 15m"
                 ],
                 [
-                    "name"=>"Studio_2",
-                    "description"=>"20m * 15m"
-
-                ],
-                [
-                    "name"=>"Espace_cafe",
+                    "name"=>"Studio 2",
                     "description"=>"20m * 15m"
 
                 ],
                 [
-                    "name"=>"Espace_Agora",
+                    "name"=>"Espace cafe",
                     "description"=>"20m * 15m"
 
                 ],
                 [
-                    "name"=>"Co_working",
+                    "name"=>"Espace Agora",
+                    "description"=>"20m * 15m"
+
+                ],
+                [
+                    "name"=>"Co-working",
                     "description"=>"20m * 15m"
 
                 ],

@@ -68,13 +68,21 @@ class ClasseController extends Controller
     }
     public function destroy(Classe $classe)
     {
-        $classeimages = ClasseImg::where('classe_id', $classe->id)->get();
+        $salles =  ["Salle 1","Salle 2","Salle 3","Salle 4","Salle 5", "salle 6"];
 
-        foreach ($classeimages as $classeimage) {
-            Storage::disk("public")->delete('imgs/classeImgs/' . $classeimage->img_url);
+        if (!in_array($classe->name, $salles)){
+            // dd($classe->name);
+            
+                $classeimages = ClasseImg::where('classe_id', $classe->id)->get();
+        
+                foreach ($classeimages as $classeimage) {
+                    Storage::disk("public")->delete('imgs/classeImgs/' . $classeimage->img_url);
+                }
+        
+                $classe->delete();
+            
         }
 
-        $classe->delete();
         return redirect()->back();
     }
 }
