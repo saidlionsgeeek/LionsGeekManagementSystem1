@@ -69,13 +69,20 @@ class StudioController extends Controller
     }
     public function destroy(Studio $studio)
     {
-        $studioimages = StudioImg::where('studio_id', $studio->id)->get();
 
-        foreach ($studioimages as $studioimage) {
-            Storage::disk("public")->delete('Imgs/studioImgs/' . $studioimage->img_url);
+        $studios = ["Studio 1", "Studio 2", "Espace cafe", "Espace Agora", "Co-working", "Externe"];
+
+        if (!in_array($studio->name, $studios)){
+            // dd($classe->name);
+            $studioimages = StudioImg::where('studio_id', $studio->id)->get();
+
+            foreach ($studioimages as $studioimage) {
+                Storage::disk("public")->delete('Imgs/studioImgs/' . $studioimage->img_url);
+            }
+            
+            $studio->delete();
         }
 
-        $studio->delete();
         return redirect()->back();
     }
 }

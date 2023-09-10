@@ -16,32 +16,32 @@ class ClasseSeeder extends Seeder
         //
         Classe::insert([
             [
-                "name"=>"Salle_1",
+                "name"=>"Salle 1",
                 "description"=>"20m * 15m"
 
             ],
             [
-                "name"=>"Salle_2",
+                "name"=>"Salle 2",
                 "description"=>"20m * 15m"
 
             ],
             [
-                "name"=>"Salle_3",
+                "name"=>"Salle 3",
                 "description"=>"20m * 15m"
 
             ],
             [
-                "name"=>"Salle_4",
+                "name"=>"Salle 4",
                 "description"=>"20m * 15m"
 
             ],
             [
-                "name"=>"Salle_5",
+                "name"=>"Salle 5",
                 "description"=>"20m * 15m"
 
             ],
             [
-                "name"=>"Salle_6",
+                "name"=>"Salle 6",
                 "description"=>"20m * 15m"
 
             ],
