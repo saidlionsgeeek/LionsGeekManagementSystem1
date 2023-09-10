@@ -11,16 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reservation_classes', function (Blueprint $table) {
+        Schema::create('team_members', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('description');
-            $table->dateTime('start_time');
-            $table->dateTime('end_time');
-            $table->text('comment');
-            $table->boolean('history')->default(0);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('classe_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('reservation_studio_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -30,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reservation_classes');
+        Schema::dropIfExists('team_members');
     }
 };

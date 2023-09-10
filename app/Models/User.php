@@ -50,4 +50,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function team_members() {
+        return $this->hasMany(TeamMember::class);
+    }
 }

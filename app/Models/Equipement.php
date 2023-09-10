@@ -16,8 +16,9 @@ class Equipement extends Model
         "img_url",
     ];
 
-    public function reservationstudios(){
-        return $this->belongsToMany(reservationstudio::class , "reservation_studio_equipements");
+
+    public function reservation_studio_equipment() {
+        return $this->hasMany(ReservationStudioEquipment::class);
     }
 
 

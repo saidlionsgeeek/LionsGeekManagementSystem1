@@ -18,8 +18,4 @@ class Studio extends Model
         return $this->hasMany(StudioImg::class);
     }
 
-    // *reservation class
-    public function reservationstudios(){
-        return $this->hasMany(ReservationStudio::class);
-    }
 }

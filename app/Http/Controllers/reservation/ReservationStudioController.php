@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\reservation;
 
 use App\Http\Controllers\Controller;
+use App\Models\Equipement;
 use App\Models\ReservationStudio;
+use App\Models\ReservationStudioEquipment;
 use App\Models\Studio;
+use App\Models\TeamMember;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ReservationStudioController extends Controller
@@ -67,6 +71,22 @@ class ReservationStudioController extends Controller
     }
 
     public function info(Studio $studio, ReservationStudio $reservation_studio) {
-        return view('studios.components.info', compact('studio', 'reservation_studio'));
+        $equipments = Equipement::all();
+        $reservation_studio_equipments = ReservationStudioEquipment::where('reservation_studio_id', $reservation_studio->id)->get();
+        $team = TeamMember::where('reservation_studio_id', $reservation_studio->id)->get();
+        $users = User::whereNot('id', 1)->get();
+        return view('studios.components.info', compact('studio', 'reservation_studio', 'equipments', 'reservation_studio_equipments', 'team', 'users'));
+    }
+
+    public function destroy(ReservationStudio $reservation_studio) {
+        
+        foreach($reservation_studio->reservation_studio_equipment as $rse) {
+            $e = Equipement::where('id', $rse->equipement_id)->first();
+            $e->stock += $rse->stock;
+            $e->save();
+        }
+        
+        $reservation_studio->delete();
+        return redirect()->route('studios.calendar', $reservation_studio->studio_id);
     }
 }

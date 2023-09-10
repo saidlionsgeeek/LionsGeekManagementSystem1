@@ -10,17 +10,26 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    {{ $reservation_studio->name }} 
 
-                    @if ($reservation_studio->user_id == auth()->user()->id)
-                        hello
+                    <p class="text-2xl text-center">{{ $reservation_studio->name }} by {{ auth()->user()->name }} at {{ $reservation_studio->studio->name }}</p>
+                    <p><span class="text-lg font-medium">Description:</span> {{ $reservation_studio->description }} </p>
+                    <p>Starts at {{ $reservation_studio->start_time }} and Ends at {{ $reservation_studio->end_time }}
+                    </p>
+                    <p><span class="text-lg font-medium">Comment:</span> {{ $reservation_studio->comment }} </p>
+                    @include('studios.components.equipment')
+                    @include('studios.components.team')
+                    
+                    @if ($reservation_studio->user_id == auth()->user()->id || auth()->user()->name == 'admin')
+                    <div class="flex justify-evenly">
+                        @include('studios.components.equipment_add')
+                        @include('studios.components.team_add')
+                        <form action={{ route('reservation_studio.delete', $reservation_studio->id) }} method='POST'>
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger" type="submit">Delete Reservation</button>
+                        </form>
+                    </div>
                     @endif
-
-                    {{-- <form action={{ route('reservation.delete', [$reservation->studio->id, $reservation->id]) }} method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger" type="submit">Delete</button>
-                    </form> --}}
                 </div>
             </div>
         </div>

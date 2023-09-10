@@ -9,6 +9,7 @@
                 <th scope="col">Stock</th>
                 <th scope="col">State</th>
                 <th scope="col">Picture</th>
+                <th scope="col">Edit</th>
                 <th scope="col">Supprimez un equipment</th>
             </tr>
         </thead>
@@ -28,6 +29,9 @@
                     </td>
                     <td>
                         @include("admin.equipments.components.show_img") 
+                    </td>
+                    <td>
+                        @include("admin.equipments.components.edit") 
                     </td>
                     <td>
                         @include("admin.equipments.components.delete") 

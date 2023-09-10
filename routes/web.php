@@ -13,6 +13,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\reservation\ReservationClasseController;
 use App\Http\Controllers\reservation\ReservationStudioController;
+use App\Http\Controllers\reservation\ReservationStudioEquipmentController;
+use App\Http\Controllers\TeamMemberController;
 use App\Models\Equipement;
 use Illuminate\Support\Facades\Route;
 
@@ -73,6 +75,7 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     // equipment routes
     Route::get("/equipments", [EquipmentController::class, "index"])->name("equipment.index");
     Route::post("/equipment/store", [EquipmentController::class, "store"])->name("equipment.store");
+    Route::put("/equipment/edit/{equipment}", [EquipmentController::class, "update"])->name("equipment.edit");
     Route::put("/equipment/state/{equipment}", [EquipmentController::class, "state"])->name("equipment.state");
     Route::delete("/equipment/destroy/{equipment}", [EquipmentController::class, "destroy"])->name("equipment.destroy");
 });
@@ -83,14 +86,22 @@ Route::middleware('auth','checkVerification')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Classes 
+    // Classes Reservations
     Route::get('/classes/{classe}', [ReservationClasseController::class, 'calendar'])->name('classes.calendar');
     Route::post('/classes/{classe}/reservation/create', [ReservationClasseController::class, 'store'])->name('reservation_classe.create');
-    Route::get('/classe/{classe}/reservations/{reservation_classe}', [ReservationClasseController::class, 'info'])->name('reservation.info');
-    // Studios
+    Route::get('/classe/{classe}/reservations/{reservation_classe}', [ReservationClasseController::class, 'info'])->name('reservation_classe.info');
+    Route::delete('/classes/reservations/{reservation_classe}', [ReservationClasseController::class, 'destroy'])->name('reservation_classe.delete');
+
+    // Studios Reservations
     Route::get('/studios/{studio}', [ReservationStudioController::class, 'calendar'])->name('studios.calendar');
     Route::post('/studios/{studio}/reservation/create', [ReservationStudioController::class, 'store'])->name('reservation_studio.create');
-    Route::get('/studios/{studio}/reservations/{reservation_studio}', [ReservationStudioController::class, 'info'])->name('reservation.info');
+    Route::get('/studios/{studio}/reservations/{reservation_studio}', [ReservationStudioController::class, 'info'])->name('reservation_studio.info');
+    Route::delete('/studios/reservations/{reservation_studio}', [ReservationStudioController::class, 'destroy'])->name('reservation_studio.delete');
+    // Reservation Studio Equipment
+    Route::post('/studios/reservations/{reservation_studio}/equipment/{equipement}', [ReservationStudioEquipmentController::class, 'add'])->name('reservation_studio_equipment.add');
+    Route::delete('/studios/reservations/equipment/{reservation_studio_equipment}', [ReservationStudioEquipmentController::class, 'destroy'])->name('reservation_studio_equipment.delete');
+    // Reservation Studio Team
+    Route::post('/studios/reservations/{reservation_studio}/user/{user}/team', [TeamMemberController::class, 'add'])->name('reservation_studio_team.add');
 });
 
 

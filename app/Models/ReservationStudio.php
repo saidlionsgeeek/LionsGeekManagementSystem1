@@ -27,10 +27,18 @@ class ReservationStudio extends Model
     ];
 
     public function user() {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function studio() {
-        $this->belongsTo(Studio::class);
+        return $this->belongsTo(Studio::class);
+    }
+
+    public function reservation_studio_equipment() {
+        return $this->hasMany(ReservationStudioEquipment::class);
+    }
+
+    public function team_members() {
+        return $this->hasMany(TeamMember::class);
     }
 }

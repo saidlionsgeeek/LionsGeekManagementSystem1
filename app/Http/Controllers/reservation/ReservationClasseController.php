@@ -69,4 +69,11 @@ class ReservationClasseController extends Controller
     public function info(Classe $classe, ReservationClasse $reservation_classe) {
         return view('classes.components.info', compact('classe', 'reservation_classe'));
     }
+
+    public function destroy(ReservationClasse $reservation_classe) {
+        
+        
+        $reservation_classe->delete();
+        return redirect()->route('classes.calendar', $reservation_classe->classe_id);
+    }
 }

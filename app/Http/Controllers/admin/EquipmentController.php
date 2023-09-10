@@ -52,7 +52,7 @@ class EquipmentController extends Controller
     public function destroy(Equipement $equipment)
     {
 
-        if(!str_contains($equipment->img_url, 'Equipment')) {
+        if (!str_contains($equipment->img_url, 'Equipment')) {
             Storage::disk("public")->delete('imgs/equipmentImgs/' . $equipment->img_url);
         }
 
@@ -61,11 +61,32 @@ class EquipmentController extends Controller
         return redirect()->back();
     }
 
-    public function state(Equipement $equipment) {
+    public function state(Equipement $equipment)
+    {
         $equipment->update([
             'state' => !$equipment->state,
         ]);
 
         return back();
+    }
+
+    public function update(Request $request, Equipement $equipment)
+    {
+        request()->validate([
+            "name" => ["required"],
+            "stock" => ["required"],
+            "ref" => ["required"],
+            "state" => ["required"],
+        ]);
+
+        $data = [
+            "name" => $request->name,
+            "ref" => $request->ref,
+            "stock" => $request->stock,
+            "state" => (bool)$request->state,
+        ];
+
+        $equipment->update($data);
+        return redirect()->back();
     }
 }

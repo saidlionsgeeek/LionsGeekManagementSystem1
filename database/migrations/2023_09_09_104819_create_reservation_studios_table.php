@@ -19,8 +19,8 @@ return new class extends Migration
             $table->dateTime('end_time');
             $table->text('comment');
             $table->boolean('history')->default(0);
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('studio_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('studio_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
