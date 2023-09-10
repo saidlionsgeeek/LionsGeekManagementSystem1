@@ -11,7 +11,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <p class="text-2xl text-center">{{ $reservation_studio->name }} by {{ auth()->user()->name }} at {{ $reservation_studio->studio->name }}</p>
+                    <p class="text-2xl text-center">{{ $reservation_studio->name }} by {{ $reservation_studio->user->name }} at {{ $reservation_studio->studio->name }}</p>
                     <p><span class="text-lg font-medium">Description:</span> {{ $reservation_studio->description }} </p>
                     <p>Starts at {{ $reservation_studio->start_time }} and Ends at {{ $reservation_studio->end_time }}
                     </p>

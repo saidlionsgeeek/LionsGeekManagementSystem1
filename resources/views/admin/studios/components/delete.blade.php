@@ -7,12 +7,12 @@
 <form action={{ route('admin.studio.destroy', $studio->id) }} method="POST">
     @csrf
     @method('DELETE')
-    <button type="submit" disabled class=" btn btn-primary text-white ">supprimer classe</button>
+    <button type="submit" disabled class=" btn btn-danger text-white ">supprimer studio</button>
 </form>
 @else
 <form action={{ route('admin.studio.destroy', $studio->id) }} method="POST">
     @csrf
     @method('DELETE')
-    <button type="submit" class=" btn btn-primary text-white ">supprimer classe</button>
+    <button type="submit" class=" btn btn-danger text-white ">supprimer studio</button>
 </form>
 @endif
