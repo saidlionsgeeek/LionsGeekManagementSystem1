@@ -1,5 +1,5 @@
 <x-app-layout>
-    @include("admin.classes.components.create")
+    @include('admin.classes.components.create')
     <table class="table">
         <thead>
             <tr>
@@ -18,25 +18,27 @@
                 <tr valign="middle">
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $classe->name }}</td>
-                    <td>{{ $classe->description }}</td>
+                    <td> 
+                        @include("admin.classes.components.show_description")
+                    </td>
                     {{-- <td>@mdo</td> --}}
                     <td>
-                        @include("admin.classes.components.create_imgs") 
+                        @include('admin.classes.components.create_imgs')
                     </td>
 
                     <td>
-                        @include("admin.classes.components.show_imgs")
+                        @include('admin.classes.components.show_imgs')
 
                     </td>
 
                     {{-- la suppression du studio --}}
                     <td>
-                        @include("admin.classes.components.delete")
+                        @include('admin.classes.components.delete')
 
                     </td>
 
                     <td>
-                        @include("admin.classes.components.edit")
+                        @include('admin.classes.components.edit')
                     </td>
                 </tr>
             @endforeach

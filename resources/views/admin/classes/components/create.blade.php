@@ -14,19 +14,19 @@
             <div class="modal-body">
                 <form action={{ route('admin.classe.store') }} method="POST" enctype="multipart/form-data">
                     @csrf
-                    <div>
-                        <label for="name">Ajoutez un nom</label>
-                        <input type="text" name="name" id="name">
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Ajoutez un nom</label>
+                        <input class="form-control" type="text" name="name" id="name">
                     </div>
 
-                    <div>
-                        <label for="description">Ajoutez une description</label>
-                        <input type="text" name="description" id="description">
+                    <div class="mb-3">
+                        <label class='form-label' for="description">Ajoutez une description:</label>
+                        <textarea class='form-control' name="description" id="description" cols="30" rows="5"></textarea>
                     </div>
 
-                    <div>
-                        <label for="img_url">Images </label>
-                        <input type="file" name="img_url[]" multiple id="img_url">
+                    <div class='mb-3'>
+                        <label class="form-label" for="img_url">Images </label>
+                        <input  class='form-control' type="file" name="img_url[]" multiple id="img_url">
                     </div>
 
                     <div class="modal-footer">

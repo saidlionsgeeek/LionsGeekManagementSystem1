@@ -20,9 +20,9 @@
                 <form action={{ route('admin.studio.images.store', $studio->id) }} method="POST" enctype="multipart/form-data">
                     @csrf
 
-                    <div>
-                        <label for="img_url">name : </label>
-                        <input type="file" name="img_url[]" multiple id="img_url">
+                    <div class="mb-3">
+                        <label class="form-label"  for="img_url">name : </label>
+                        <input class="form-control"  type="file" name="img_url[]" multiple id="img_url">
                     </div>
 
 

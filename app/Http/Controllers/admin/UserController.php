@@ -33,7 +33,7 @@ class UserController extends Controller
 
         $exist = User::where("email", $request->email)->first();
         // pour vérifier c'est l'eamil deja sur notre database
-        if (!$exist) { 
+        if (!$exist) {
             if ($request->type == "interne") {
                 $password = Str::random(12);
                 $user = User::create([
@@ -48,15 +48,15 @@ class UserController extends Controller
                 ]);
                 $user->assignRole('interne');
                 $selectedCheckboxes = $request->input('checklist');
-                if ($selectedCheckboxes =! null) {
+                if ($selectedCheckboxes = !null) {
 
-                $selectedCheckboxes = $request->input('checklist');
-                    foreach($selectedCheckboxes as $selectedCheckboxe){
-                        if ($selectedCheckboxe == "Gestionnaire des classes" ) {
+                    $selectedCheckboxes = $request->input('checklist');
+                    foreach ($selectedCheckboxes as $selectedCheckboxe) {
+                        if ($selectedCheckboxe == "Gestionnaire des classes") {
                             if (!$user->hasRole('Gestionnaire des classes')) {
                                 $user->assignRole('Gestionnaire des classes');
                             }
-                        }elseif ($selectedCheckboxe == "Gestionnaire des studios") {
+                        } elseif ($selectedCheckboxe == "Gestionnaire des studios") {
                             if (!$user->hasRole('Gestionnaire des studios')) {
                                 $user->assignRole('Gestionnaire des studios');
                             }
@@ -73,7 +73,7 @@ class UserController extends Controller
             } else if ($request->type == "externe") {
 
                 $password = Str::random(12);
-                $user= User::create([
+                $user = User::create([
                     "name" => $request->name,
                     "lastname" => $request->lastname,
                     "cin" => $request->cin,
@@ -85,15 +85,15 @@ class UserController extends Controller
                 ]);
                 $user->assignRole('externe');
                 $selectedCheckboxes = $request->input('checklist');
-                if ($selectedCheckboxes =! null) {
+                if ($selectedCheckboxes = !null) {
 
-                $selectedCheckboxes = $request->input('checklist');
-                    foreach($selectedCheckboxes as $selectedCheckboxe){
-                        if ($selectedCheckboxe == "Gestionnaire des classes" ) {
+                    $selectedCheckboxes = $request->input('checklist');
+                    foreach ($selectedCheckboxes as $selectedCheckboxe) {
+                        if ($selectedCheckboxe == "Gestionnaire des classes") {
                             if (!$user->hasRole('Gestionnaire des classes')) {
                                 $user->assignRole('Gestionnaire des classes');
                             }
-                        }elseif ($selectedCheckboxe == "Gestionnaire des studios") {
+                        } elseif ($selectedCheckboxe == "Gestionnaire des studios") {
                             if (!$user->hasRole('Gestionnaire des studios')) {
                                 $user->assignRole('Gestionnaire des studios');
                             }
@@ -109,7 +109,35 @@ class UserController extends Controller
             }
         }
 
-        
+
+
+        return redirect()->back();
+    }
+    public function update(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => ["required"],
+            'lastname' => ["required"],
+            'cin' => ["required"],
+            'phone' => ["required"],
+        ]);
+
+        if ($request->gender) {
+            $user->update([
+                "name" => $request->name,
+                "lastname" => $request->lastname,
+                "cin" => $request->cin,
+                "gender" => $request->gender,
+                "phone" => $request->phone,
+            ]);
+            return redirect()->back();
+        }
+        $user->update([
+            "name" => $request->name,
+            "lastname" => $request->lastname,
+            "cin" => $request->cin,
+            "phone" => $request->phone,
+        ]);
 
         return redirect()->back();
     }
@@ -137,6 +165,14 @@ class UserController extends Controller
             $user->assignRole($request->role);
             FacadesMail::to($user->email)->send(new RolesAssigneMail($mailData1));
         } else {
+            if ($request->role == "interne") {
+                $user->removeRole("externe");
+                $user->assignRole("interne");
+            }else{
+                $user->removeRole("interne");
+                $user->assignRole("externe");
+            }
+
             $mailData1 = [
                 "email" => "Félicitations, tu es devenu " . $request->role . " chez Liones Geek.",
                 "password" => "Tu peux maintenant avoir accès pour voir toutes les réservations auxquelles tu es associé(e)."
@@ -152,7 +188,15 @@ class UserController extends Controller
     public function removerole(User $user, Role $role)
     {
         if ($user->hasRole($role)) {
-            $user->removeRole($role);
+            if ($role->name === "interne") {
+                $user->removeRole($role);
+                $user->assignRole("externe");
+            } elseif ($role->name === "externe") {
+                $user->removeRole($role);
+                $user->assignRole("interne");
+            } else {
+                $user->removeRole($role);
+            }
             return back();
         }
         return back();

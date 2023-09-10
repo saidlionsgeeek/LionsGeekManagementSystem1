@@ -28,8 +28,8 @@
                         <input type="file" name="img_url"  id="img_url">
                     </div> --}}
                     <div>
-                        <label for="img_url">Images </label>
-                        <input type="file" name="img_url[]" multiple id="img_url">
+                        <label  class="form-label"for="img_url">Images </label>
+                        <input class="form-control" type="file" name="img_url[]" multiple id="img_url">
                     </div>
 
 

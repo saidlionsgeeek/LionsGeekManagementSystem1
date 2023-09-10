@@ -16,15 +16,14 @@
                 <form action={{ route('admin.studio.update', $studio->id) }} method="POST">
                     @csrf
                     @method('PUT')
-                    <div>
-                        <label for="name">Name :</label>
-                        <input type="text" name="name" id="name" value="{{ old('name', $studio->name) }}"
+                    <div class="mb-3">
+                        <label class="form-label" for="name">Name :</label>
+                        <input class="form-control" type="text" name="name" id="name" value="{{ old('name', $studio->name) }}"
                             required>
                     </div>
-                    <div>
-                        <label for="description">Description :</label>
-                        <input type="text" name="description" id="description"
-                            value="{{ old('description', $studio->description) }}" required>
+                    <div class="mb-3">
+                        <label class="form-label"  for="description">Description :</label>
+                        <textarea class="form-control" type="text" name="description" id="description" cols="30" rows="4" requierd>{{ old('description', $studio->description) }}"</textarea>
                     </div>
             </div>
             <div class="modal-footer">

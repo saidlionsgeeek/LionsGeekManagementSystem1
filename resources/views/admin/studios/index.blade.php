@@ -18,7 +18,7 @@
                 <tr valign="middle">
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $studio->name }}</td>
-                    <td>{{ $studio->description }}</td>
+                    <td>@include("admin.studios.components.show_description")</td>
                     {{-- <td>@mdo</td> --}}
                     <td>
                         @include("admin.studios.components.create_imgs")

@@ -33,10 +33,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
     return view("dashboard");
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified','checkVerification'])->name('dashboard');
 
 // new user route check
 Route::get('/', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/verification', [HomeController::class, 'verification']);
+
+
 
 // Route::get('/admin', function () {
 //     return view('admin.index');
@@ -49,6 +52,7 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
     Route::delete('/users/{user}', [UserController::class, "destroy"])->name("users.destroy");
     Route::post('/users/store', [UserController::class, "store"])->name("users.store");
     Route::post('/users/assignrole/{user}', [UserController::class, "assignrole"])->name("user.roles.update");
+    Route::put('/users/information/{user}', [UserController::class, "update"])->name("user.update");
     Route::delete("/user/{user}/roles/{role}", [UserController::class, "removerole"])->name('user.role.remove');
     // classes routes
     Route::get("/classe", [ClasseController::class, "index"])->name("classe.index");
@@ -74,7 +78,7 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
 });
 
 // !!!
-Route::middleware('auth')->group(function () {
+Route::middleware('auth','checkVerification')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

@@ -16,15 +16,15 @@
                 <form action={{ route('admin.classe.update', $classe->id) }} method="POST">
                     @csrf
                     @method('PUT')
-                    <div>
-                        <label for="name">Name :</label>
-                        <input type="text" name="name" id="name" value="{{ old('name', $classe->name) }}"
-                            required>
+                    <div class='mb-3'>
+                        <label class='form-label' for="name">Name :</label>
+                        <input class='form-control' type="text" name="name" id="name"
+                            value="{{ old('name', $classe->name) }}" required>
                     </div>
                     <div>
-                        <label for="description">Description :</label>
-                        <input type="text" name="description" id="description"
-                            value="{{ old('description', $classe->description) }}" required>
+                        <label class="form-label" for="description">Description :</label>
+                        <textarea class='form-control' type="text" name="description" id="description" required cols="30"
+                            rows="4">value="{{ old('description', $classe->description) }}"</textarea>
                     </div>
             </div>
             <div class="modal-footer">

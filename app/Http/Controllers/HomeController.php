@@ -22,4 +22,7 @@ class HomeController extends Controller
             }
         }
     }
+    public function verification(){
+        return view("admin.newuser.passwordReset");
+    }
 }
