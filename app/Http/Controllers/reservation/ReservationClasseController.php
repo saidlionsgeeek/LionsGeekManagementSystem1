@@ -5,6 +5,7 @@ namespace App\Http\Controllers\reservation;
 use App\Http\Controllers\Controller;
 use App\Models\Classe;
 use App\Models\ReservationClasse;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReservationClasseController extends Controller
@@ -22,6 +23,15 @@ class ReservationClasseController extends Controller
 
         $request_start = intval(substr($request->start_time, 0, 2)); // Get the hour, change it to an Int. example: form '09' to 9 
         $request_end = intval(substr($request->end_time, 0, 2));
+
+        $currentDateTime = Carbon::now();
+        $currentHour = $currentDateTime->hour; // Current hour
+        $currentDate = $currentDateTime->toDateString(); // Current date in YYYY-MM-DD format
+        if ($request->day_date == $currentDate) { 
+            if (($request_start < $currentHour) or ($request_end < $currentHour)) { // So you can't make a reservation in the past
+                return back();
+            }
+        }
 
 
         $reservations_classe = ReservationClasse::where('classe_id', $classe->id)->get(); // Get all classe reservations.
