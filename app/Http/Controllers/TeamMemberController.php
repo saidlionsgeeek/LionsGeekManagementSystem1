@@ -18,4 +18,10 @@ class TeamMemberController extends Controller
         TeamMember::create($data);
         return back();
     }
+
+    public function destroy(TeamMember $team_member) {
+        $team_member->delete();
+
+        return back();
+    }
 }

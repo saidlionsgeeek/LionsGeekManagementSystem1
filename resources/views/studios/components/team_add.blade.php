@@ -23,12 +23,17 @@
                     <tbody>
                         @foreach ($users as $user)
                             <tr valign="middle">
-                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->name }} {{ $user->lastname }}</td>
                                 <td>{{ $user->type }}</td>
                                 <td>
                                     <form method="POST"
                                         action={{ route('reservation_studio_team.add', ['reservation_studio' => $reservation_studio->id, 'user' => $user->id]) }}>
                                         @csrf
+                                        {{-- @foreach ($team as $team_member)
+                                            @if ($team_member->user_id == $user->id)
+                                                <button disabled class="btn btn-danger" type="submit">Add</button>                                                
+                                            @endif
+                                            @endforeach --}}
                                         <button class="btn btn-success" type="submit">Add</button>
 
                                     </form>

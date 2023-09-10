@@ -102,6 +102,7 @@ Route::middleware('auth','checkVerification')->group(function () {
     Route::delete('/studios/reservations/equipment/{reservation_studio_equipment}', [ReservationStudioEquipmentController::class, 'destroy'])->name('reservation_studio_equipment.delete');
     // Reservation Studio Team
     Route::post('/studios/reservations/{reservation_studio}/user/{user}/team', [TeamMemberController::class, 'add'])->name('reservation_studio_team.add');
+    Route::delete('/studios/reservations/team/{team_member}', [TeamMemberController::class, 'destroy'])->name('reservation_studio_team.delete');
 });
 
 
