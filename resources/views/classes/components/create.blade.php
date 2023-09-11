@@ -30,12 +30,12 @@
                     </div>
                     <div>
                         <label for="start_time" class="form-label">Start</label>
-                        <input required class='form-control' type="time" min="08:00" max="18:00" value='09:00' step="3600"
+                        <input required class='form-control' type="time" min="08:00" max="18:00" value='08:00' step="3600"
                             name="start_time">
                     </div>
                     <div>
                         <label for="end_time" class="form-label">End</label>
-                        <input required class='form-control' type="time" min="08:00" max="18:00" value='10:00' step="3600"
+                        <input required class='form-control' type="time" min="08:00" max="18:00" value='18:00' step="3600"
                             name="end_time">
                     </div>
                     <div>
