@@ -71,7 +71,7 @@
         @include('layouts.navigation')
         <div class="flex justify-center mt-4">
             @foreach ($classes as $c)
-                <a href="/classes/{{ $c->id }}" class="px-2 underline text-amber-600">{{ $c->name }}</a>
+                <a href="/classes/{{ $c->id }}" class="px-2 text-decoration-none text-amber-600">{{ $c->name }}</a>
             @endforeach
         </div>
         <h1 class="text-center text-5xl pt-8">{{ $classe->name }}</h1>

@@ -71,7 +71,7 @@
         @include('layouts.navigation')
         <div class="flex justify-center mt-4">
             @foreach ($studios as $s)
-                <a href="/studios/{{ $s->id }}" class="px-2 underline text-amber-600">{{ $s->name }}</a>
+                <a  href="/studios/{{ $s->id }}" class="px-2 text-decoration-none text-amber-600">{{ $s->name }}</a>
             @endforeach
         </div>
         <h1 class="text-center text-5xl pt-8">{{ $studio->name }}</h1>
@@ -79,7 +79,6 @@
             @role(['admin', 'Gestionnaire des studios'])
             @include('studios.components.create')
             @endrole
-            
         </div>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
