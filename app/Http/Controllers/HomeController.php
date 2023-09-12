@@ -17,8 +17,9 @@ class HomeController extends Controller
             if ($uerverfication == 1) {
                 if ($userverification == false) {
                     return view("auth.2fa-setup");
+                }else{
+                    return view('dashboard');
                 }
-                return view('dashboard');
             }else if ($uerverfication == 0) {
                 return view("admin.newuser.passwordReset");
             }else{
