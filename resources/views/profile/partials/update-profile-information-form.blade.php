@@ -24,6 +24,12 @@
         </div>
 
         <div>
+            <x-input-label for="lastname" :value="__('Last Name')" />
+            <x-text-input id="lastname" name="lastname" type="text" class="mt-1 block w-full" :value="old('lastname', $user->lastname)" required autofocus  />
+            <x-input-error class="mt-2" :messages="$errors->get('lastname')" />
+        </div>
+
+        <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
@@ -45,6 +51,28 @@
                     @endif
                 </div>
             @endif
+        </div>
+        
+        <div>
+            <x-input-label for="cin" :value="__('Carte d Identité Nationale' )" />
+            <x-text-input id="cin" name="cin" type="text" class="mt-1 block w-full" :value="old('cin', $user->cin)" required autofocus  />
+            <x-input-error class="mt-2" :messages="$errors->get('cin')" />
+        </div>
+
+        <div>
+            <x-input-label for="gender" :value="__('Genre')" />
+            <select  id="gender" name="gender" class="mt-1 block w-full shadow-sm rounded border-gray-200" :value="old('gender', $user->gender)" required autofocus>
+                <option selected disabled>choisissez votre genre:</option>
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+            </select>
+            <x-input-error class="mt-2" :messages="$errors->get('gender')" />
+        </div>
+
+        <div>
+            <x-input-label for="phone" :value="__('Téléphone')" />
+            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)" required autofocus  />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
         </div>
 
         <div class="flex items-center gap-4">
