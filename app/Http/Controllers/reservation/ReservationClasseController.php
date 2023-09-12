@@ -76,6 +76,18 @@ class ReservationClasseController extends Controller
         return back();
     }
 
+    public function update(Request $request, ReservationClasse $reservation_classe) {
+        $data = [
+            'name' => $request->title,
+            'description' => $request->description,
+            'comment' => $request->comment,
+        ];
+
+        $reservation_classe->update($data);
+
+        return back();
+    }
+
     public function info(Classe $classe, ReservationClasse $reservation_classe) {
         return view('classes.components.info', compact('classe', 'reservation_classe'));
     }

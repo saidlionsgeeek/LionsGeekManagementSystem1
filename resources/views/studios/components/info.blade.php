@@ -21,6 +21,7 @@
                     
                     @if ($reservation_studio->user_id == auth()->user()->id || auth()->user()->roles[0]->name == 'admin')
                     <div class="flex justify-evenly">
+                        @include('studios.components.edit')
                         @include('studios.components.equipment_add')
                         @include('studios.components.team_add')
                         <form action={{ route('reservation_studio.cancel', $reservation_studio->id) }} method='POST'>

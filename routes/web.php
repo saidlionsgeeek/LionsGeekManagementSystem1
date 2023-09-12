@@ -94,6 +94,7 @@ Route::middleware('auth','checkVerification')->group(function () {
     Route::post('/classes/{classe}/reservation/create', [ReservationClasseController::class, 'store'])->name('reservation_classe.create');
     Route::get('/classe/{classe}/reservations/{reservation_classe}', [ReservationClasseController::class, 'info'])->name('reservation_classe.info');
     Route::delete('/classes/reservations/{reservation_classe}/delete', [ReservationClasseController::class, 'destroy'])->name('reservation_classe.delete');
+    Route::put('/classes/reservations/{reservation_classe}/edit', [ReservationClasseController::class, 'update'])->name('reservation_classe.edit');
     Route::put('/classes/reservations/{reservation_classe}/cancel', [ReservationClasseController::class, 'cancel'])->name('reservation_classe.cancel');
 
     // Studios Reservations
@@ -101,6 +102,7 @@ Route::middleware('auth','checkVerification')->group(function () {
     Route::post('/studios/{studio}/reservation/create', [ReservationStudioController::class, 'store'])->name('reservation_studio.create');
     Route::get('/studios/{studio}/reservations/{reservation_studio}', [ReservationStudioController::class, 'info'])->name('reservation_studio.info');
     Route::delete('/studios/reservations/{reservation_studio}/delete', [ReservationStudioController::class, 'destroy'])->name('reservation_studio.delete');
+    Route::put('/studios/reservations/{reservation_studio}/edit', [ReservationStudioController::class, 'update'])->name('reservation_studio.edit');
     Route::put('/studios/reservations/{reservation_studio}/cancel', [ReservationStudioController::class, 'cancel'])->name('reservation_studio.cancel');
     // Reservation Studio Equipment
     Route::post('/studios/reservations/{reservation_studio}/equipment/{equipement}', [ReservationStudioEquipmentController::class, 'add'])->name('reservation_studio_equipment.add');

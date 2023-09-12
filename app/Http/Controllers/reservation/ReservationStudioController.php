@@ -81,6 +81,18 @@ class ReservationStudioController extends Controller
         return back();
     }
 
+    public function update(Request $request, ReservationStudio $reservation_studio) {
+        $data = [
+            'name' => $request->title,
+            'description' => $request->description,
+            'comment' => $request->comment,
+        ];
+
+        $reservation_studio->update($data);
+
+        return back();
+    }
+
     public function info(Studio $studio, ReservationStudio $reservation_studio)
     {
         $equipments = Equipement::all();

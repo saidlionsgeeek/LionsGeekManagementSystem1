@@ -16,8 +16,9 @@
                     </p>
                     <p><span class="text-lg font-medium">Comment:</span> {{ $reservation_classe->comment }} </p>
                     
-                    @if ($reservation_classe->user_id == auth()->user()->id || auth()->user()->name == 'admin')
+                    @if ($reservation_classe->user_id == auth()->user()->id || auth()->user()->roles[0]->name == 'admin')
                     <div class="flex justify-evenly">
+                        @include('classes.components.edit')
                         <form action={{ route('reservation_classe.cancel', $reservation_classe->id) }} method='POST'>
                             @csrf
                             @method('PUT')
