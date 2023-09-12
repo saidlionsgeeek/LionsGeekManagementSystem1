@@ -40,6 +40,9 @@
                         <x-nav-link class='text-decoration-none' :href="route('admin.equipment.index')" :active="request()->routeIs('admin.equipment.index')">
                             {{ __('Modifier les Equipments') }}
                         </x-nav-link>
+                        <x-nav-link class='text-decoration-none' :href="route('admin.history.index')" :active="request()->routeIs('admin.history.index')">
+                            {{ __('History') }}
+                        </x-nav-link>
                         @endrole
                 </div>
                 <div class='d-flex align-items-center'>

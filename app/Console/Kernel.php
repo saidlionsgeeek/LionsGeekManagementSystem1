@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
         foreach ($reservations_studio as $reservation_studio) {
             $end_time = Carbon::parse($reservation_studio->end_time);
             
-            if (!is_null($end_time) && $end_time->isCurrentHour()) {
+            if ($end_time->isCurrentHour()) {
                 $schedule->command('delete:reservation')->when($end_time->isCurrentHour())->withoutOverlapping();
             } 
         }
@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
         foreach ($reservations_classe as $reservation_classe) {
             $end_time = Carbon::parse($reservation_classe->end_time);
             
-            if (!is_null($end_time) && $end_time->isCurrentHour()) {
+            if ($end_time->isCurrentHour()) {
                 $schedule->command('delete:reservation')->when($end_time->isCurrentHour())->withoutOverlapping();
             } 
         }

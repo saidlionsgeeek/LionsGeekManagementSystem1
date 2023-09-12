@@ -34,7 +34,7 @@ class ReservationClasseController extends Controller
         }
 
 
-        $reservations_classe = ReservationClasse::where('classe_id', $classe->id)->get(); // Get all classe reservations.
+        $reservations_classe = ReservationClasse::where('classe_id', $classe->id)->where('canceled', 0)->get(); // Get all classe reservations.
 
         if ($request_start > $request_end) { // Check if reservation's start is after reservation's end. Example: starts at 10, ends at 9
             return back();
@@ -82,8 +82,16 @@ class ReservationClasseController extends Controller
 
     public function destroy(ReservationClasse $reservation_classe) {
         
-        
         $reservation_classe->delete();
+        return back();
+    }
+
+    public function cancel(ReservationClasse $reservation_classe) {
+
+        $reservation_classe->update([
+            'canceled' => true
+        ]);
+
         return redirect()->route('classes.calendar', $reservation_classe->classe_id);
     }
 }

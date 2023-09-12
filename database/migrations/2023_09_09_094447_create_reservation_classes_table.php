@@ -18,7 +18,8 @@ return new class extends Migration
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->text('comment');
-            $table->boolean('history')->default(0);
+            $table->boolean('canceled')->default(0);
+            $table->boolean('passed')->default(0);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('classe_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

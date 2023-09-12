@@ -25,6 +25,8 @@ class RCContoller extends Controller
                     "borderColor" => 'DarkSlateBlue',
                     "classe_id" => $reservationclasse->classe_id,
                     "user_id" => $reservationclasse->user_id,
+                    'canceled' => $reservationclasse->canceled,
+                    'passed' => $reservationclasse->passed,
                 ];
             });
 

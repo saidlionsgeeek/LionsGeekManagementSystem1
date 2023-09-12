@@ -16,7 +16,8 @@ class ReservationClasse extends Model
         'start_time',
         'end_time',
         'comment',
-        'history',
+        'canceled',
+        'passed',
         'user_id',
         'classe_id'
     ];

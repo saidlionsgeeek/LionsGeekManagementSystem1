@@ -23,10 +23,10 @@
                     <div class="flex justify-evenly">
                         @include('studios.components.equipment_add')
                         @include('studios.components.team_add')
-                        <form action={{ route('reservation_studio.delete', $reservation_studio->id) }} method='POST'>
+                        <form action={{ route('reservation_studio.cancel', $reservation_studio->id) }} method='POST'>
                             @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Delete Reservation</button>
+                            @method('PUT')
+                            <button class="btn btn-danger" type="submit">Cancel Reservation</button>
                         </form>
                     </div>
                     @endif

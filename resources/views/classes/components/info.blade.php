@@ -18,10 +18,10 @@
                     
                     @if ($reservation_classe->user_id == auth()->user()->id || auth()->user()->name == 'admin')
                     <div class="flex justify-evenly">
-                        <form action={{ route('reservation_classe.delete', $reservation_classe->id) }} method='POST'>
+                        <form action={{ route('reservation_classe.cancel', $reservation_classe->id) }} method='POST'>
                             @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" type="submit">Delete Reservation</button>
+                            @method('PUT')
+                            <button class="btn btn-danger" type="submit">Cancel Reservation</button>
                         </form>
                     </div>
                     @endif

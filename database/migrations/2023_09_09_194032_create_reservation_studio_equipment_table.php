@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('reservation_studio_id')->constrained()->cascadeOnDelete();
             $table->foreignId('equipement_id')->constrained()->cascadeOnDelete();
             $table->integer('stock');
+            $table->boolean('history')->default(0);
             $table->timestamps();
         });
     }

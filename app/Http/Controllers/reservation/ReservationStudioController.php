@@ -31,14 +31,14 @@ class ReservationStudioController extends Controller
         $currentDateTime = Carbon::now();
         $currentHour = $currentDateTime->hour; // Current hour
         $currentDate = $currentDateTime->toDateString(); // Current date in YYYY-MM-DD format
-        if ($request->day_date == $currentDate) { 
+        if ($request->day_date == $currentDate) {
             if (($request_start < $currentHour) or ($request_end < $currentHour)) { // So you can't make a reservation in the past
                 return back();
             }
         }
 
 
-        $reservations_studio = ReservationStudio::where('studio_id', $studio->id)->get(); // Get all studio reservations.
+        $reservations_studio = ReservationStudio::where('studio_id', $studio->id)->where('canceled', 0)->get(); // Get all studio reservations.
 
         if ($request_start > $request_end) { // Check if reservation's start is after reservation's end. Example: starts at 10, ends at 9
             return back();
@@ -100,6 +100,24 @@ class ReservationStudioController extends Controller
         }
 
         $reservation_studio->delete();
+        return back();
+    }
+    public function cancel(ReservationStudio $reservation_studio)
+    {
+
+        foreach ($reservation_studio->reservation_studio_equipment as $rse) {
+            $e = Equipement::where('id', $rse->equipement_id)->first();
+            $e->stock += $rse->stock;
+            $rse->history = true;
+            $e->save();
+            $rse->save();
+
+        }
+
+        $reservation_studio->update([
+            'canceled' => true
+        ]);
+
         return redirect()->route('studios.calendar', $reservation_studio->studio_id);
     }
 }

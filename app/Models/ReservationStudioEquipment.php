@@ -13,6 +13,7 @@ class ReservationStudioEquipment extends Model
         'reservation_studio_id',
         'equipement_id',
         'stock',
+        'history',
     ];
 
     public function reservation_studio() {

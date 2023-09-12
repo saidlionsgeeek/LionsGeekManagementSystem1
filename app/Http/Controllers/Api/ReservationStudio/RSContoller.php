@@ -24,6 +24,8 @@ class RSContoller extends Controller
                     "borderColor" => 'DarkSlateBlue',
                     "studio_id" => $reservationstudio->studio_id,
                     "user_id" => $reservationstudio->user_id,
+                    'canceled' => $reservationstudio->canceled,
+                    'passed' => $reservationstudio->passed,
                 ];
             } );
 

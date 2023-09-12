@@ -29,8 +29,9 @@
                 data
             } = await axios.get('/api/reservation_studio'); // Get all the studio reservations from our api route already JSON formatted
 
-            const reservations = data.reservation_studio.filter(reservation => reservation.studio_id ==
-                {{ $studio->id }}) // Filter our reservations by a specific studio
+            const reservations = data.reservation_studio.filter(reservation => reservation.studio_id == // Filter our reservations by a specific studio
+                {{ $studio->id }}).filter(reservation => reservation.canceled == false)
+
 
             console.log(reservations) // This is how professionals debug btw 
 
@@ -50,9 +51,10 @@
                 eventClick: async function(info) { // To be triggered when you click on a reservation
                     const reservation = reservations.find(reservation => reservation.title == info
                         .event.title); // Get the specific reservation you clicked upon
-
-                    window.location.href =
-                        `/studios/${reservation.studio_id}/reservations/${reservation.id}` // Change the URL to go to a dedicated view page for our reservation
+                    if(!reservation.passed) {
+                        window.location.href =
+                            `/studios/${reservation.studio_id}/reservations/${reservation.id}` // Change the URL to go to a dedicated view page for our reservation
+                    }
 
                 },
 

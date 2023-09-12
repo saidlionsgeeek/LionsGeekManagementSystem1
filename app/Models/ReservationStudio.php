@@ -15,7 +15,8 @@ class ReservationStudio extends Model
         'start_time',
         'end_time',
         'comment',
-        'history',
+        'canceled',
+        'passed',
         'user_id',
         'studio_id'
     ];
