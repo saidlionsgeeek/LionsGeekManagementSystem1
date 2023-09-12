@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#example{{ $classe->id }}Modal">
+<button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#example{{ $classe->id }}Modal">
     Make a New Class Reservation
 </button>
 

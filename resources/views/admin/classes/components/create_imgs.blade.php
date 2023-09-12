@@ -1,7 +1,8 @@
 <!-- Button trigger modal -->
 {{-- @foreach ($classe_images as $studio_image) --}}
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_{{ $classe->id }}">
-    Ajouter une image
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal_{{ $classe->id }}"> 
+    <i class="fa-regular fa-image"></i>
+    Ajouter des images
 </button>
 {{-- @endforeach --}}
 

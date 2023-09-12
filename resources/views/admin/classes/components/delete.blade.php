@@ -6,12 +6,12 @@
     <form action="{{ route('admin.classe.destroy', $classe->id) }}" method="POST">
         @csrf
         @method('DELETE')
-        <button type="submit" disabled class="btn btn-danger text-white">Supprimer classe</button>
+        <button type="submit" disabled class="btn btn-danger text-white"><i class="fa-solid fa-trash-can"></i></button>
     </form>
 @else
 <form action="{{ route('admin.classe.destroy', $classe->id) }}" method="POST">
     @csrf
     @method('DELETE')
-    <button type="submit"  class="btn btn-danger text-white">Supprimer classe</button>
+    <button type="submit"  class="btn btn-danger text-white"><i class="fa-solid fa-trash-can"></i></button>
 </form>
 @endif
