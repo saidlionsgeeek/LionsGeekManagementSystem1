@@ -1,6 +1,7 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{ $equipment->id }}">
-    Edit the equipment
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#{{ $equipment->id }}">
+    <i class="fa-solid fa-pen-to-square"></i>
+
 </button>
 
 <!-- Modal -->

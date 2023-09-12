@@ -1,6 +1,7 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#usercreate">
-    crée un utilisateur
+<button type="button" class="btn btn-warning mt-5 mb-5 text-center fs-4" data-bs-toggle="modal" data-bs-target="#usercreate">
+    <i class="fa-solid fa-plus"></i>
+    Utilisateur
 </button>
 
 <!-- Modal -->

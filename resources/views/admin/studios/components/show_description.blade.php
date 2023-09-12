@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#example{{ $studio->id }}descriptionModal">
-    voir description
+    Voir 
 </button>
   
   <!-- Modal -->

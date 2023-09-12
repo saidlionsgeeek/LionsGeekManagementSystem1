@@ -1,6 +1,7 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#show{{$user->id}}1">
-    Information
+<button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#show{{$user->id}}1">
+  <i class="fa-solid fa-eye"></i> 
+
   </button>
   
   <!-- Modal -->

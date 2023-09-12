@@ -13,8 +13,8 @@
   <div class="text-center bg-light">
     @include('admin.users.components.create')
   </div>
-      <table class="table">
-          <thead align="center">
+      <table class="table container text-center">
+          <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">Nom</th>
@@ -27,7 +27,7 @@
               <th scope="col">Supprimer l'utilisateur</th>
             </tr>
           </thead>
-          <tbody align="middle" >
+          <tbody>
               @foreach ($users as $key => $user )
               @if (!$user->hasrole(["admin"]))
                   <tr>
@@ -41,7 +41,7 @@
                   <form action="{{ route('admin.user.role.remove', [$user->id, $role->id]) }}" method="POST">
                       @csrf
                       @method('DELETE')
-                      <button class="btn btn-danger">{{ $role->name }}</button>
+                      <button class="btn btn-secondary mb-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"> {{ $role->name }}</button>
                   </form>
                 @endunless
               @endforeach
@@ -51,7 +51,7 @@
                   <form action="{{route('admin.user.role.remove',[$user->id,$role->id])}}" method="POST">
                   @csrf
                   @method("DELETE")
-                  <button class="btn btn-danger">{{$role->name}} </button>
+                  <button class="btn btn-success">{{$role->name}} </button>
                 </form>
                 @endif
                 
@@ -68,7 +68,7 @@
                 <form action="{{route("admin.users.destroy",$user->id)}}" method="POST">
                     @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')">Supprimer</button>
+                <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"><i class="fa-solid fa-trash-can"></i></button>
                 </form>
             </td>
             </tr>

@@ -12,6 +12,6 @@
 <form action="{{ route('admin.classe.destroy', $classe->id) }}" method="POST">
     @csrf
     @method('DELETE')
-    <button type="submit"  class="btn btn-danger text-white"><i class="fa-solid fa-trash-can"></i></button>
+    <button type="submit"  class="btn btn-danger text-white" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"><i class="fa-solid fa-trash-can"></i></button>
 </form>
 @endif

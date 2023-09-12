@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#example{{ $studio->id }}Modal">
-    Make a New Studio Reservation
+<button type="button" class="btn btn-warning mt-3 fs-3" data-bs-toggle="modal" data-bs-target="#example{{ $studio->id }}Modal">
+    <i class="fa-solid fa-plus"></i> Reservation
 </button>
 
 <!-- Modal -->

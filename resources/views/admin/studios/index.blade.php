@@ -1,15 +1,15 @@
 <x-app-layout>
     @include("admin.studios.components.create")
-    <table class="table">
+    <table class="table container text-center">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nom de studio</th>
+                <th scope="col">Nom de l'espace</th>
                 <th scope="col">Description</th>
 
                 <th scope="col">Ajoutez une image</th>
-                <th scope="col">Voir plus</th>
-                <th scope="col">Supprimez un studio</th>
+                <th scope="col">Voir l'espace</th>
+                <th scope="col">Supprimez</th>
                 <th scope="col">Modifiez</th>
             </tr>
         </thead>
@@ -19,7 +19,6 @@
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $studio->name }}</td>
                     <td>@include("admin.studios.components.show_description")</td>
-                    {{-- <td>@mdo</td> --}}
                     <td>
                         @include("admin.studios.components.create_imgs")
                     </td>
@@ -28,7 +27,6 @@
                         @include("admin.studios.components.show_img")
                     </td>
 
-                    {{-- la suppression du studio --}}
                     <td>
                         @include("admin.studios.components.delete")
 

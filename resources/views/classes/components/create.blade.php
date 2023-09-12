@@ -1,7 +1,9 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#example{{ $classe->id }}Modal">
-    Make a New Class Reservation
+<button type="button" class="btn btn-warning mt-3 fs-3" data-bs-toggle="modal" data-bs-target="#example{{ $classe->id }}Modal">
+    <i class="fa-solid fa-plus"></i> Reservation
 </button>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="example{{ $classe->id }}Modal" tabindex="-1"

@@ -1,6 +1,7 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#show{{ $studio->id }}">
-    Afficher les image de studio
+    <i class="fa-solid fa-eye"></i> 
+
 </button>
 
 <!-- Modal -->

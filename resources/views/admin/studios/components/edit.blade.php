@@ -1,6 +1,7 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#{{ $studio->id }}">
-    Modifiez le studio
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#{{ $studio->id }}">
+    <i class="fa-solid fa-pen-to-square"></i>
+
 </button>
 
 <!-- Modal -->
