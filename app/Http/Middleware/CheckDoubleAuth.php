@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckVerification
+class CheckDoubleAuth
 {
     /**
      * Handle an incoming request.
@@ -17,9 +17,9 @@ class CheckVerification
     public function handle(Request $request, Closure $next): Response
     {
         $user = Auth::user();
-        
-        if ($user && $user->verification === 0) {
-            return redirect('/verification');
+
+        if ($user && $user->emailverification === 0) {
+            return redirect("/2fa/setup");
         }
         return $next($request);
     }

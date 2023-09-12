@@ -12,7 +12,7 @@
 <body>
     <h1>{{ $mailData1['email'] }}</h1>
     <h1>{{ $mailData1['password'] }}</h1>
-    <p>hello world</p>
+
 </body>
 
 </html>

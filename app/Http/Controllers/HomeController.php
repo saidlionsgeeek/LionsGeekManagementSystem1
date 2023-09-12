@@ -30,4 +30,15 @@ class HomeController extends Controller
     public function verification(){
         return view("admin.newuser.passwordReset");
     }
+    public function authswitch(){
+        $user = User::find(auth()->user()->id);
+        if ($user->authswitch == false) {
+            $user->authswitch = true;
+            $user->save();
+        }else{
+            $user->authswitch = false;
+            $user->save();
+        }
+        return redirect()->back();
+    }
 }

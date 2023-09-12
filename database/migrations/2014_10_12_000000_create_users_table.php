@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('password');
             $table->boolean("verification")->default(0);
             $table->boolean("emailverification")->default(false);
+            $table->boolean('authswitch')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

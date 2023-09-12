@@ -13,11 +13,30 @@
                 </div>
             </div>
 
+            
+
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-password-form')
                 </div>
             </div>
+            
+            @role(["interne","externe"])
+
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    <h2 class="text-lg font-medium text-gray-900">
+                        {{ __("Gérer l'Authentification") }}
+                    </h2>
+                    <form action="{{route("profile.authswitch")}}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <button class="btn btn-danger" type="submit">{{ Auth()->user()->authswitch == 0 ? "Désactiver" : "Activer" }}</button>
+                    </form>
+                </div>
+            </div>
+            @endrole
+
 
             {{-- <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">

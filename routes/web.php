@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
     return view("dashboard");
-})->middleware(['auth', 'verified','checkVerification'])->name('dashboard');
+})->middleware(['auth', 'verified',"CheckDoubleAuth",'checkVerification'])->name('dashboard');
 
 // new user route check
 Route::get('/', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
@@ -60,7 +60,7 @@ Route::middleware(['auth'])->group(function () {
 //     return view('admin.index');
 // })->middleware(['auth', 'role:admin'])->name('admin.index');
 
-Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->group(function () {
+Route::middleware(['auth', 'role:admin',"CheckDoubleAuth"])->name('admin.')->prefix('admin')->group(function () {
     Route::resource("/roles", RoleController::class);
     // Route::resource("/permissions", PermissionController::class);
     Route::get('/users', [UserController::class, "index"])->name("users.index");
@@ -96,10 +96,12 @@ Route::middleware(['auth', 'role:admin'])->name('admin.')->prefix('admin')->grou
 });
 
 // !!!
-Route::middleware('auth','checkVerification')->group(function () {
+Route::middleware('auth','checkVerification',"CheckDoubleAuth")->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::put('/authswitch', [HomeController::class, 'authswitch'])->name('profile.authswitch');
+
 
     // Classes Reservations
     Route::get('/classes/{classe}', [ReservationClasseController::class, 'calendar'])->name('classes.calendar');
