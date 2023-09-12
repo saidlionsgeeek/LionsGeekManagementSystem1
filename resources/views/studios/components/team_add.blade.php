@@ -29,13 +29,22 @@
                                     <form method="POST"
                                         action={{ route('reservation_studio_team.add', ['reservation_studio' => $reservation_studio->id, 'user' => $user->id]) }}>
                                         @csrf
-                                        {{-- @foreach ($team as $team_member)
-                                            @if ($team_member->user_id == $user->id)
-                                                <button disabled class="btn btn-danger" type="submit">Add</button>                                                
-                                            @endif
-                                            @endforeach --}}
-                                        <button class="btn btn-success" type="submit">Add</button>
-
+                                        @php
+                                            $added = false;
+                                            foreach ($team as $team_member) {
+                                                if($team_member->user_id === $user->id) {
+                                                    $added = true;
+                                                } else {
+                                                    $added = false;
+                                                }
+                                            }
+                                        @endphp
+                                       
+                                        @if ($added)
+                                        <button disabled class="btn btn-danger" type="submit">Add</button>                                                
+                                        @else
+                                        <button class="btn btn-success" type="submit">Add</button>                                                
+                                        @endif
                                     </form>
                                 </td>
                             </tr>

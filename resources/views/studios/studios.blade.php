@@ -30,7 +30,7 @@
             } = await axios.get('/api/reservation_studio'); // Get all the studio reservations from our api route already JSON formatted
 
             const reservations = data.reservation_studio.filter(reservation => reservation.studio_id == // Filter our reservations by a specific studio
-                {{ $studio->id }}).filter(reservation => reservation.canceled == false)
+                {{ $studio->id }}).filter(reservation => reservation.canceled == false) // and by cancelation
 
 
             console.log(reservations) // This is how professionals debug btw 
