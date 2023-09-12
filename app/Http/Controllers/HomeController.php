@@ -13,7 +13,11 @@ class HomeController extends Controller
         if (Auth::id())
         {
             $uerverfication = Auth()->user()->verification;
+            $userverification = Auth()->user()->emailverification;
             if ($uerverfication == 1) {
+                if ($userverification == false) {
+                    return view("auth.2fa-setup");
+                }
                 return view('dashboard');
             }else if ($uerverfication == 0) {
                 return view("admin.newuser.passwordReset");

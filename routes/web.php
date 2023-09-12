@@ -16,6 +16,7 @@ use App\Http\Controllers\reservation\ReservationClasseController;
 use App\Http\Controllers\reservation\ReservationStudioController;
 use App\Http\Controllers\reservation\ReservationStudioEquipmentController;
 use App\Http\Controllers\TeamMemberController;
+use App\Http\Controllers\TwoFAController;
 use App\Models\Equipement;
 use Illuminate\Support\Facades\Route;
 
@@ -43,7 +44,18 @@ Route::get('/', [HomeController::class, 'index'])->middleware(['auth', 'verified
 Route::get('/verification', [HomeController::class, 'verification']);
 
 
+// !!!!!
+Route::middleware(['auth'])->group(function () {
+    
+    // Autres routes authentifiées ici...
 
+    // Routes 2FA
+    Route::get('/2fa/setup', [TwoFAController::class, 'setup']);
+    Route::post('/2fa/setup', [TwoFAController::class, 'enable2FA'])->name('2fa.setup');
+    Route::get('/2fa/verify', [TwoFAController::class, 'verify'])->name('2fa.verify');
+    Route::post('/2fa/verify', [TwoFAController::class, 'check2FA']);
+});
+// !!!!
 // Route::get('/admin', function () {
 //     return view('admin.index');
 // })->middleware(['auth', 'role:admin'])->name('admin.index');

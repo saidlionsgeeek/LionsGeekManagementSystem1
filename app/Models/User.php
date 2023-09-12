@@ -28,7 +28,8 @@ class User extends Authenticatable
         "history",
         'email',
         'password',
-        "verification"
+        "verification",
+        "emailverification"
     ];
 
     /**
@@ -53,5 +54,9 @@ class User extends Authenticatable
 
     public function team_members() {
         return $this->hasMany(TeamMember::class);
+    }
+    public function twoFactorCodes()
+    {
+        return $this->hasMany(UserCode::class, 'user_id');
     }
 }
