@@ -18,7 +18,7 @@ class CheckDoubleAuth
     {
         $user = Auth::user();
 
-        if ($user && $user->emailverification === 0) {
+        if ($user && $user->emailverification === 0 && $user->verification === 1) {
             return redirect("/2fa/setup");
         }
         return $next($request);

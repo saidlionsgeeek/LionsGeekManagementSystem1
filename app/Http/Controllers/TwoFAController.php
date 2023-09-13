@@ -42,7 +42,7 @@ class TwoFAController extends Controller
         try {
             // Envoyer le code de vérification par e-mail
             $details = [
-                'email' => 'Voici votre code de verification',
+                'email' => 'Voici votre code de vérification',
                 'password' => $code
             ];
             

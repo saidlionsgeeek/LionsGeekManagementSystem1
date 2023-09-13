@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\reservation;
 
 use App\Http\Controllers\Controller;
+use App\Mail\StudioReservationMail;
 use App\Models\Equipement;
 use App\Models\ReservationStudio;
 use App\Models\ReservationStudioEquipment;
@@ -11,6 +12,9 @@ use App\Models\TeamMember;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail as FacadesMail;
+
 
 class ReservationStudioController extends Controller
 {
@@ -131,5 +135,32 @@ class ReservationStudioController extends Controller
         ]);
 
         return redirect()->route('studios.calendar', $reservation_studio->studio_id);
+    }
+
+
+    // !!!said modification 
+
+    public function studiohistory(){
+        $reservations_studio = ReservationStudio::all();
+        $details = [];
+        foreach($reservations_studio as $reservation_studio){
+            $detailes[] = [
+                "name" => $reservation_studio->name ,
+                "description" => $reservation_studio->description ,
+                "start_time" => $reservation_studio->start_time ,
+                "end_time" => $reservation_studio->end_time ,
+                "comment" => $reservation_studio->comment ,
+                "canceled" => $reservation_studio->canceled  ,
+                "passed" => $reservation_studio->passed  ,
+                "user_id" => User::where("id", $reservation_studio->user_id) ->first()->name ,
+                "studio_id" => Studio::where("id", $reservation_studio->studio_id) ->first()->name ,
+            ];
+        };
+        
+
+        $email = Auth::user()->email;
+
+        FacadesMail::to($email)->send(new StudioReservationMail($detailes));
+        return redirect()->back();
     }
 }

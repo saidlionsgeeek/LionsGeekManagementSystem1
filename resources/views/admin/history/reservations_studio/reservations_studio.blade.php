@@ -26,3 +26,9 @@
         @endforeach
     </tbody>
 </table>
+
+    <form action="{{route('reservation_studio.studiohistory')}}" method="POST">
+    @csrf
+    <button class="btn btn-primary" type="submit">send</button>
+    </form>
+

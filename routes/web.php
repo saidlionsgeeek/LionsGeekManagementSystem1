@@ -41,7 +41,7 @@ Route::get('/dashboard', function () {
 
 // new user route check
 Route::get('/', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/verification', [HomeController::class, 'verification']);
+Route::get('/verification', [HomeController::class, 'verification'])->middleware(['auth', "CheckDoubleAuth"]);
 
 
 // !!!!!
@@ -118,6 +118,10 @@ Route::middleware('auth','checkVerification',"CheckDoubleAuth")->group(function 
     Route::delete('/studios/reservations/{reservation_studio}/delete', [ReservationStudioController::class, 'destroy'])->name('reservation_studio.delete');
     Route::put('/studios/reservations/{reservation_studio}/edit', [ReservationStudioController::class, 'update'])->name('reservation_studio.edit');
     Route::put('/studios/reservations/{reservation_studio}/cancel', [ReservationStudioController::class, 'cancel'])->name('reservation_studio.cancel');
+    // !!!said
+    Route::post('/studios/reservations/mail', [ReservationStudioController::class, 'studiohistory'])->name('reservation_studio.studiohistory');
+    Route::post('/classes/reservations/mail', [ReservationClasseController::class, 'classehistory'])->name('reservation_classe.classehistory');
+    // !!! end said
     // Reservation Studio Equipment
     Route::post('/studios/reservations/{reservation_studio}/equipment/{equipement}', [ReservationStudioEquipmentController::class, 'add'])->name('reservation_studio_equipment.add');
     Route::delete('/studios/reservations/equipment/{reservation_studio_equipment}', [ReservationStudioEquipmentController::class, 'destroy'])->name('reservation_studio_equipment.delete');

@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\reservation;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ReservationMail;
 use App\Models\Classe;
 use App\Models\ReservationClasse;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail as FacadesMail;
+
 
 class ReservationClasseController extends Controller
 {
@@ -105,5 +110,28 @@ class ReservationClasseController extends Controller
         ]);
 
         return redirect()->route('classes.calendar', $reservation_classe->classe_id);
+    }
+    public function classehistory(){
+        $reservations_classe = ReservationClasse::all();
+        
+        foreach($reservations_classe as $reservation_classe){
+            $detailes1[] = [
+                "name" => $reservation_classe->name ,
+                "description" => $reservation_classe->description ,
+                "start_time" => $reservation_classe->start_time ,
+                "end_time" => $reservation_classe->end_time ,
+                "comment" => $reservation_classe->comment ,
+                "canceled" => $reservation_classe->canceled  ,
+                "passed" => $reservation_classe->passed  ,
+                "user_id" => User::where("id", $reservation_classe->user_id) ->first()->name ,
+                "classe_id" => Classe::where("id", $reservation_classe->classe_id) ->first()->name ,
+            ];
+        };
+        
+
+        $email = Auth::user()->email;
+
+        FacadesMail::to($email)->send(new ReservationMail($detailes1));
+        return redirect()->back();
     }
 }
